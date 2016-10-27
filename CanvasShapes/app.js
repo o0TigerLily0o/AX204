@@ -1,3 +1,19 @@
+//Loading my sprite
+var pikachu = new Image();
+pikachu.src = "pika.png";
+
+//drawing sprite onto canvas
+pikachu.onload = function() {
+   ctx5.drawImage(pikachu, 50, 290, 100, 95)
+}
+
+//poke centre
+var centre = new Image();
+centre.src = "gym.png";
+
+centre.onload = function() {
+	ctx5.drawImage(centre, 500, 270, 200, 195)
+}
 var c = document.getElementById("myCanvas1");
 var ctx = c.getContext("2d");
 
@@ -51,3 +67,57 @@ ctx3.closePath();
 ctx3.stroke();
 ctx3.fillStyle = "magenta"
 ctx3.fill();
+
+var c4 = document.getElementById("myCanvas4");
+var ctx4 = c4.getContext("2d");
+
+ctx4.beginPath();
+ctx4.moveTo(0,0);
+ctx4.lineTo(300,300);
+ctx4.lineTo(300,150);
+ctx4.lineTo(0,150);
+ctx4.closePath();
+ctx4.stroke();
+
+ctx4.moveTo(150,0);
+ctx4.lineTo(150,300);
+ctx4.lineTo(0,300);
+ctx4.lineTo(300,0);
+ctx4.closePath();
+ctx4.stroke();
+
+ctx4.fillStyle = "pink"
+ctx4.fill();
+
+var c5 = document.getElementById("scene");
+var ctx5 = c5.getContext("2d");
+
+//sky and land
+ctx5.fillStyle="green";
+ctx5.fillRect(0, 350, 800, 150);
+ctx5.fillStyle = "#bfd7ff";
+ctx5.fillRect(0, 0, 800, 350);
+
+//sun
+ctx5.beginPath();
+ctx5.arc(100, 100, 50, 0, 6.28);
+ctx5.closePath();
+ctx5.fillStyle="orange";
+ctx5.fill();
+
+//path
+ctx5.beginPath();
+ctx5.moveTo(350,500);
+ctx5.lineTo(450,500);
+ctx5.lineTo(420,350);
+ctx5.lineTo(380,350);
+ctx5.closePath();
+ctx5.stroke();
+ctx5.fillStyle="grey";
+ctx5.fill();
+
+ctx5.beginPath();
+ctx5.moveTo(400,500);
+ctx5.lineTo(400,350);
+ctx5.closePath();
+ctx5.stroke();

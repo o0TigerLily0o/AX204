@@ -1,5 +1,3 @@
-
-
 // Declaring variables at the top
 var game = new Phaser.Game(800, 600, Phaser.AUTO, '', 
 	{preload: preload, create: create, update: update}
@@ -59,6 +57,26 @@ function create() {
 		enemy1.body.gravity.y = 500;
 		enemy1.body.collideWorldBounds = true;
 
+		enemy2 = game.add.sprite(10, 20, 'baddie');
+		// animate the sprite
+		enemy2.animations.add('left', [0,1], 10, true);
+		enemy2.animations.add('right', [2,3], 10, true);
+		game.physics.arcade.enable(enemy1);
+		// creating physics for enemy sprite
+		enemy2.body.bounce.y = 0.2;
+		enemy2.body.gravity.y = 500;
+		enemy2.body.collideWorldBounds = true;
+
+		enemy3 = game.add.sprite(200, 20, 'baddie');
+		// animate the sprite
+		enemy3.animations.add('left', [0,1], 10, true);
+		enemy3.animations.add('right', [2,3], 10, true);
+		game.physics.arcade.enable(enemy1);
+		// creating physics for enemy sprite
+		enemy3.body.bounce.y = 0.2;
+		enemy3.body.gravity.y = 500;
+		enemy3.body.collideWorldBounds = true;
+
 	// Create keyboard events
 	cursors = game.input.keyboard.createCursorKeys();
 
@@ -77,6 +95,8 @@ function update() {
 	// Player sprite and enemy sprite collides with the platforms
 	game.physics.arcade.collide(player, platforms);
 	game.physics.arcade.collide(enemy1, platforms);
+	game.physics.arcade.collide(enemy2, platforms);
+	game.physics.arcade.collide(enemy3, platforms);
 	// Player sprite does not move if there are no events
 	player.body.velocity.x = 0;
 	// Keys are pressed, what happens
@@ -95,3 +115,66 @@ function update() {
 		player.body.velocity.y = -300;
 	}
 }
+
+  //Enemy AI
+  if (enemy1.x > 749){
+	enemy1.body.velocity.x = -120;
+	enemy1.animations.play('left');
+  } else if (enemy1.x < 405){
+	enemy1.body.velocity.x = 120;
+	enemy1.animations.play('right');
+  }
+
+  if (enemy1.x > 200){
+	enemy1.body.velocity.x = -80;
+	enemy1.animations.play('left');
+  } else if (enemy1.x < 20){
+	enemy1.body.velocity.x = 80;
+	enemy1.animations.play('right');
+  } 
+
+  if (enemy1.x > 749){
+	enemy1.body.velocity.x = -150;
+	enemy1.animations.play('left');
+  } else if (enemy1.x < 200){
+	enemy1.body.velocity.x = 150;
+	enemy1.animations.play('right');
+  }
+
+  // Collision with stars
+  game.physics.arcade.collide(star, platforms);
+  // Overlap between the player and the stars
+  games.physics.arcade.overlap(player, stars, collectStar, null, this);
+  // Overlap between the player and enemies
+  games.physics.arcade.overlap(player, enemy1, loseLife, null, this);
+  games.physics.arcade.overlap(player, enemy2, loseLife2, null, this);
+  games.physics.arcade.overlap(player, enemy3, loseLife, null, this);
+}
+
+  // Define collectStar
+  function collectStar (player, star) {
+  	// Remove star
+  	star.kill();
+  	// Increase the score
+  	score = score + 1;
+  	//Create a new star
+  	star = stars.craete(Math.floor(Math.random() * 750), 0, 'star');
+    star.body.y = 200;
+    star.body.bounce.y = Math.random() * 0.99;
+  }
+
+    // Define loselife
+    function loselife (player, enemy) {
+    	// Remove enemy, decrease score and reset
+    	enemy.kill();
+    	score = score - 1;
+    	enemy.reset(750, 20);
+    }
+
+    // Define loselife2
+    function loselife (player, enemy) {
+    	// Remove enemy, decrease score and reset
+    	enemy.kill();
+    	score = score - 1;
+    	enemy.reset(10, 20);
+    }

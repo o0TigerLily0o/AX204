@@ -164,7 +164,7 @@ function update() {
   }
 
     // Define loselife
-    function loselife (player, enemy) {
+    function loseLife (player, enemy) {
     	// Remove enemy, decrease score and reset
     	enemy.kill();
     	score = score - 1;
@@ -172,7 +172,7 @@ function update() {
     }
 
     // Define loselife2
-    function loselife (player, enemy) {
+    function loseLife2 (player, enemy) {
     	// Remove enemy, decrease score and reset
     	enemy.kill();
     	score = score - 1;

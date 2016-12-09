@@ -115,7 +115,6 @@ function update() {
 		player.body.velocity.y = -300;
 	}
 
-
   //Enemy AI
   if (enemy1.x > 749){
 	enemy1.body.velocity.x = -120;
@@ -142,7 +141,7 @@ function update() {
   }
 
   // Collision with stars
-  game.physics.arcade.collide(star, platforms);
+  game.physics.arcade.collide(stars, platforms);
   // Overlap between the player and the stars
   games.physics.arcade.overlap(player, stars, collectStar, null, this);
   // Overlap between the player and enemies

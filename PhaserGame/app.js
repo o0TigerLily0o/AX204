@@ -61,7 +61,7 @@ function create() {
 		// animate the sprite
 		enemy2.animations.add('left', [0,1], 10, true);
 		enemy2.animations.add('right', [2,3], 10, true);
-		game.physics.arcade.enable(enemy1);
+		game.physics.arcade.enable(enemy2);
 		// creating physics for enemy sprite
 		enemy2.body.bounce.y = 0.2;
 		enemy2.body.gravity.y = 500;
@@ -71,7 +71,7 @@ function create() {
 		// animate the sprite
 		enemy3.animations.add('left', [0,1], 10, true);
 		enemy3.animations.add('right', [2,3], 10, true);
-		game.physics.arcade.enable(enemy1);
+		game.physics.arcade.enable(enemy3);
 		// creating physics for enemy sprite
 		enemy3.body.bounce.y = 0.2;
 		enemy3.body.gravity.y = 500;
@@ -114,7 +114,7 @@ function update() {
 	if (cursors.up.isDown && player.body.touching.down){
 		player.body.velocity.y = -300;
 	}
-}
+
 
   //Enemy AI
   if (enemy1.x > 749){
@@ -149,6 +149,8 @@ function update() {
   games.physics.arcade.overlap(player, enemy1, loseLife, null, this);
   games.physics.arcade.overlap(player, enemy2, loseLife2, null, this);
   games.physics.arcade.overlap(player, enemy3, loseLife, null, this);
+
+}
 
   // Define collectStar
   function collectStar (player, star) {
